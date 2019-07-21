@@ -19,14 +19,14 @@ private:
 	public:
 		static constexpr float moveSpeed = 372.5f;
 		Vec2 pos;
-		const float size;
-		const Color col;
+		float size;
+		Color col;
 	};
 public:
 	Starfield();
 	void Update( float dt );
 	void Draw( Graphics& gfx );
 private:
-	static constexpr float spawnRate = 14.0f;
+	static constexpr float spawnRate = 17.0f;
 	std::vector<Star> stars;
 };
