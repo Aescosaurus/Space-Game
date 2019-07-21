@@ -44,10 +44,12 @@ void Game::UpdateModel()
 
 	player.Update( wnd.mouse,dt );
 	sf.Update( dt );
+	objHand.Update( player.GetPos(),dt );
 }
 
 void Game::ComposeFrame()
 {
 	sf.Draw( gfx );
+	objHand.Draw( gfx );
 	player.Draw( gfx );
 }

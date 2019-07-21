@@ -81,6 +81,6 @@ private:
 	Color*                                              pSysBuffer = nullptr;
 public:
 	static RectI GetScreenRect();
-	static constexpr int ScreenWidth = 800;
-	static constexpr int ScreenHeight = 600;
+	static constexpr int ScreenWidth = 960;
+	static constexpr int ScreenHeight = 540;
 };

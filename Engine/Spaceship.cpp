@@ -40,3 +40,8 @@ void Spaceship::Draw( Graphics& gfx ) const
 
 	gfx.DrawSprite( Vei2( pos ),spr,angle + chili::pi / 2.0f );
 }
+
+const Vec2& Spaceship::GetPos() const
+{
+	return( pos );
+}

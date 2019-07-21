@@ -10,6 +10,8 @@ class Spaceship
 public:
 	void Update( const Mouse& mouse,float dt );
 	void Draw( Graphics& gfx ) const;
+
+	const Vec2& GetPos() const;
 private:
 	static constexpr Vei2 size = { 48,48 };
 	Vec2 pos = Graphics::GetScreenRect().GetCenter();

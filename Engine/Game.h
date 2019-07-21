@@ -25,6 +25,7 @@
 #include "Graphics.h"
 #include "Spaceship.h"
 #include "Starfield.h"
+#include "ObstacleHandler.h"
 
 class Game
 {
@@ -46,6 +47,7 @@ private:
 	/*  User Variables              */
 	Spaceship player;
 	Starfield sf;
+	ObstacleHandler objHand;
 	/********************************/
 };
 

@@ -150,6 +150,7 @@
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Mouse.h" />
+    <ClInclude Include="ObstacleHandler.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Resource.h" />
@@ -161,6 +162,7 @@
     <ClInclude Include="Vec2.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Asteroid.cpp" />
     <ClCompile Include="COMInitializer.cpp" />
     <ClCompile Include="DXErr.cpp" />
     <ClCompile Include="FrameTimer.cpp" />
@@ -170,6 +172,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="ObstacleHandler.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Spaceship.cpp" />
