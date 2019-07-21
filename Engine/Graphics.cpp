@@ -346,6 +346,24 @@ void Graphics::DrawRect( int x,int y,int width,int height,Color c )
 	}
 }
 
+void Graphics::DrawCircle( const Vei2& pos,int radius,Color c )
+{
+	const int radiusSq = radius * radius;
+	for( int y = pos.y - radius; y < pos.y + radius; ++y )
+	{
+		for( int x = pos.x - radius; x < pos.x + radius; ++x )
+		{
+			const int xDiff = pos.x - x;
+			const int yDiff = pos.y - y;
+			if( GetScreenRect().ContainsPoint( { x,y } ) &&
+				xDiff * xDiff + yDiff * yDiff < radiusSq )
+			{
+				PutPixel( x,y,c );
+			}
+		}
+	}
+}
+
 void Graphics::DrawSprite( const Vei2& center,
 	const Surface& spr,float angle )
 {

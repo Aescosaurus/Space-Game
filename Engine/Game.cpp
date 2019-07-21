@@ -41,10 +41,13 @@ void Game::UpdateModel()
 {
 	float dt = FrameTimer::Mark();
 	if( dt > 1.0f ) dt = 0.0f;
+
 	player.Update( wnd.mouse,dt );
+	sf.Update( dt );
 }
 
 void Game::ComposeFrame()
 {
+	sf.Draw( gfx );
 	player.Draw( gfx );
 }

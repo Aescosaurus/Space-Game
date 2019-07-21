@@ -24,6 +24,7 @@
 #include "Mouse.h"
 #include "Graphics.h"
 #include "Spaceship.h"
+#include "Starfield.h"
 
 class Game
 {
@@ -37,13 +38,14 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
-	Spaceship player;
 	/********************************/
 private:
 	MainWindow& wnd;
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
+	Spaceship player;
+	Starfield sf;
 	/********************************/
 };
 

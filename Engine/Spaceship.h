@@ -9,8 +9,6 @@ class Spaceship
 {
 public:
 	void Update( const Mouse& mouse,float dt );
-	// TODO: For image, draw in between angle and center
-	//  and cuz we're moving to the right it'll look good.
 	void Draw( Graphics& gfx ) const;
 private:
 	static constexpr Vei2 size = { 48,48 };
