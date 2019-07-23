@@ -44,6 +44,11 @@ void ObstacleHandler::Update( const Vec2& playerPos,float dt )
 		LoadChunk();
 	}
 
+	for( auto& missile : missiles )
+	{
+		missile.Update( playerPos,dt );
+	}
+
 	// if( float( Random{ 0.0f,100.0f } ) < asteroidSpawnChance )
 	// {
 	// 	const float padding = 64.0f;
@@ -54,11 +59,17 @@ void ObstacleHandler::Update( const Vec2& playerPos,float dt )
 	// 	asteroids.emplace_back( Asteroid{ randPos,
 	// 		asteroidMoveSpeed } );
 	// }
+
+	if( float( Random{ 0.0f,100.0f } ) < missileSpawnChance )
+	{
+		missiles.emplace_back( Missile{ Vec2{ 50.0f,50.0f } } );
+	}
 }
 
 void ObstacleHandler::Draw( Graphics& gfx ) const
 {
 	for( const auto& ast : asteroids ) ast.Draw( gfx );
+	for( const auto& msl : missiles ) msl.Draw( gfx );
 }
 
 void ObstacleHandler::LoadChunk()
