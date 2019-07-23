@@ -3,6 +3,7 @@
 #include "Vec2.h"
 #include "Graphics.h"
 #include "Codex.h"
+#include "ChiliUtils.h"
 
 class Asteroid
 {
@@ -25,4 +26,6 @@ private:
 	CSurfPtr sprSheet = SurfCodex::Fetch( "Images/Asteroids.bmp" );
 	RectI sprClipArea;
 	float angle = 0.0f;
+	static constexpr float rotSpeed = chili::pi * 2.0f;
+	float angleDelta;
 };

@@ -6,7 +6,8 @@ Asteroid::Asteroid( const Vec2& pos,float speed )
 	:
 	pos( Vei2( pos ) ),
 	speed( speed ),
-	containsFuel( float( Random{ 0.0f,100.0f } ) < fuelChance )
+	containsFuel( float( Random{ 0.0f,100.0f } ) < fuelChance ),
+	angleDelta( float( Random{ -rotSpeed,rotSpeed } ) )
 {
 	const int randX = int( Random{ 0,1 } ) * int( size ) * 2;
 	const int randY = int( Random{ 0,1 } ) * int( size ) * 2;
@@ -18,7 +19,7 @@ void Asteroid::Update( float dt )
 {
 	pos.x -= speed * dt;
 
-	angle += dt * 3.0f;
+	angle += angleDelta * dt;
 }
 
 void Asteroid::Draw( Graphics& gfx ) const
