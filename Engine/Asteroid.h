@@ -2,6 +2,7 @@
 
 #include "Vec2.h"
 #include "Graphics.h"
+#include "Codex.h"
 
 class Asteroid
 {
@@ -21,4 +22,7 @@ private:
 	float speed;
 	static constexpr float fuelChance = 10.0f;
 	bool containsFuel;
+	CSurfPtr sprSheet = SurfCodex::Fetch( "Images/Asteroids.bmp" );
+	RectI sprClipArea;
+	float angle = 0.0f;
 };

@@ -140,6 +140,7 @@
     <ClInclude Include="ChiliException.h" />
     <ClInclude Include="ChiliUtils.h" />
     <ClInclude Include="ChiliWin.h" />
+    <ClInclude Include="Codex.h" />
     <ClInclude Include="Colors.h" />
     <ClInclude Include="COMInitializer.h" />
     <ClInclude Include="DXErr.h" />

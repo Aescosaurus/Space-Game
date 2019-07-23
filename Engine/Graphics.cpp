@@ -367,12 +367,23 @@ void Graphics::DrawCircle( const Vei2& pos,int radius,Color c )
 void Graphics::DrawSprite( const Vei2& center,
 	const Surface& spr,float angle )
 {
-	const auto topLeft = center - spr.GetSize() / 2;
+	DrawSprite( center,spr.GetRect(),spr,angle );
+}
+
+void Graphics::DrawSprite( const Vei2& center,const RectI& clip,
+	const Surface& spr,float angle )
+{
+	assert( clip.left >= 0 );
+	assert( clip.right <= spr.GetWidth() );
+	assert( clip.top >= 0 );
+	assert( clip.bottom <= spr.GetHeight() );
+
+	const auto topLeft = center - clip.GetSize() / 2;
 	const Matrix rotationMatrix = Matrix::Rotation( angle );
 
-	for( int y = 0; y < spr.GetHeight(); ++y )
+	for( int y = 0; y < clip.GetHeight(); ++y )
 	{
-		for( int x = 0; x < spr.GetWidth(); ++x )
+		for( int x = 0; x < clip.GetWidth(); ++x )
 		{
 			auto drawPos = Vec2( Vei2{ topLeft.x + x,
 				topLeft.y + y } );
@@ -380,7 +391,8 @@ void Graphics::DrawSprite( const Vei2& center,
 			drawPos = rotationMatrix * drawPos;
 			drawPos += Vec2( center );
 
-			const auto pix = spr.GetPixel( x,y );
+			const auto pix = spr.GetPixel( x + clip.left,
+				y + clip.top );
 			if( pix != Colors::Magenta &&
 				drawPos.x > 0.0f &&
 				drawPos.x < float( ScreenWidth - 1 ) &&

@@ -64,6 +64,8 @@ public:
 	void DrawCircle( const Vei2& pos,int radius,Color c );
 	void DrawSprite( const Vei2& center,
 		const Surface& spr,float angle );
+	void DrawSprite( const Vei2& center,const RectI& clip,
+		const Surface& spr,float angle );
 	~Graphics();
 private:
 	Microsoft::WRL::ComPtr<IDXGISwapChain>				pSwapChain;
