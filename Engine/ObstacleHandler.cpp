@@ -62,7 +62,9 @@ void ObstacleHandler::Update( const Vec2& playerPos,float dt )
 
 	if( float( Random{ 0.0f,100.0f } ) < missileSpawnChance )
 	{
-		missiles.emplace_back( Missile{ Vec2{ 50.0f,50.0f } } );
+		missiles.emplace_back( Missile{ Vec2{ -64.0f,
+			float( Random{ 0.0f,
+			float( Graphics::ScreenHeight ) } ) } } );
 	}
 }
 

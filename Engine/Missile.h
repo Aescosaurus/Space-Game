@@ -2,6 +2,7 @@
 
 #include "Vec2.h"
 #include "Graphics.h"
+#include "Codex.h"
 
 class Missile
 {
@@ -14,6 +15,8 @@ private:
 	Vec2 pos;
 	// Vec2 vel;
 	float angle = 0.0f;
-	static constexpr float flightSpeed = 100.0f;
-	static constexpr float rotSpeed = 1.0f;
+	static constexpr float flightSpeed = 200.0f;
+	static constexpr float rotSpeed = 2.5f;
+	static constexpr float size = 14.0f;
+	CSurfPtr spr = SurfCodex::Fetch( "Images/Missile.bmp" );
 };

@@ -18,7 +18,7 @@ private:
 private:
 	static constexpr float asteroidSpawnChance = 2.0f;
 	static constexpr float asteroidMoveSpeed = 500.0f;
-	static constexpr float missileSpawnChance = 5.0f;
+	static constexpr float missileSpawnChance = 0.8f;
 	std::vector<Asteroid> asteroids;
 	std::vector<Missile> missiles;
 	int nChunks;

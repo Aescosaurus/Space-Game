@@ -1,4 +1,5 @@
 #include "Missile.h"
+#include "ChiliUtils.h"
 
 Missile::Missile( const Vec2& pos )
 	:
@@ -21,5 +22,6 @@ void Missile::Update( const Vec2& playerPos,float dt )
 
 void Missile::Draw( Graphics& gfx ) const
 {
-	gfx.DrawCircle( Vei2( pos ),5,Colors::Red );
+	// gfx.DrawCircle( Vei2( pos ),int( size ),Colors::Red );
+	gfx.DrawSprite( Vei2( pos ),*spr,angle + chili::pi / 2.0f );
 }
