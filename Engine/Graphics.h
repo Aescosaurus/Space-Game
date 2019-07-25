@@ -26,6 +26,7 @@
 #include "Colors.h"
 #include "Rect.h"
 #include "Surface.h"
+#include <cassert>
 
 class Graphics
 {
@@ -62,8 +63,26 @@ public:
 	void PutPixelApprox( float x,float y,Color c );
 	void DrawRect( int x,int y,int width,int height,Color c );
 	void DrawCircle( const Vei2& pos,int radius,Color c );
+	template<typename Effect>
 	void DrawSprite( int x,int y,const RectI& clip,
-		const Surface& spr );
+		const Surface& spr,Effect eff )
+	{
+		assert( clip.left >= 0 );
+		assert( clip.top >= 0 );
+		assert( clip.right <= spr.GetWidth() );
+		assert( clip.bottom <= spr.GetHeight() );
+
+		for( int yY = 0; yY < clip.GetHeight(); ++yY )
+		{
+			for( int xX = 0; xX < clip.GetWidth(); ++xX )
+			{
+				const auto pix = spr.GetPixel( x + clip.left,
+					y + clip.top );
+				// PutPixel( x + xX,y + yY,pix );
+				eff( x + xX,y + yY,pix,*this );
+			}
+		}
+	}
 	void DrawSprite( const Vei2& center,
 		const Surface& spr,float angle );
 	void DrawSprite( const Vei2& center,const RectI& clip,

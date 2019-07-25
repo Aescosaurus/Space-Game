@@ -23,10 +23,7 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
-#include "Spaceship.h"
-#include "Starfield.h"
-#include "ObstacleHandler.h"
-#include "Codex.h"
+#include "Campaign.h"
 
 class Game
 {
@@ -52,11 +49,8 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
-	State gameState = State::Menu;
-	CFontPtr luckyPixel = FontCodex::Fetch( "Fonts/LuckyPixel6x9.bmp" );
-	Spaceship player;
-	Starfield sf;
-	ObstacleHandler objHand;
+	State gameState = State::Game;
+	Campaign mainGame;
 	/********************************/
 };
 
