@@ -39,17 +39,31 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	float dt = FrameTimer::Mark();
-	if( dt > 1.0f ) dt = 0.0f;
+	switch( gameState )
+	{
+	case State::Menu:
+		break;
+	case State::Game:
+		float dt = FrameTimer::Mark();
+		if( dt > 1.0f ) dt = 0.0f;
 
-	player.Update( wnd.mouse,dt );
-	sf.Update( dt );
-	objHand.Update( player.GetPos(),dt );
+		player.Update( wnd.mouse,dt );
+		sf.Update( dt );
+		objHand.Update( player.GetPos(),dt );
+		break;
+	}
 }
 
 void Game::ComposeFrame()
 {
-	sf.Draw( gfx );
-	objHand.Draw( gfx );
-	player.Draw( gfx );
+	switch( gameState )
+	{
+	case State::Menu:
+		break;
+	case State::Game:
+		sf.Draw( gfx );
+		objHand.Draw( gfx );
+		player.Draw( gfx );
+		break;
+	}
 }

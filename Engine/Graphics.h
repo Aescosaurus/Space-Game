@@ -62,6 +62,8 @@ public:
 	void PutPixelApprox( float x,float y,Color c );
 	void DrawRect( int x,int y,int width,int height,Color c );
 	void DrawCircle( const Vei2& pos,int radius,Color c );
+	void DrawSprite( int x,int y,const RectI& clip,
+		const Surface& spr );
 	void DrawSprite( const Vei2& center,
 		const Surface& spr,float angle );
 	void DrawSprite( const Vei2& center,const RectI& clip,

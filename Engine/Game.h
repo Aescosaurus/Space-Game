@@ -26,9 +26,16 @@
 #include "Spaceship.h"
 #include "Starfield.h"
 #include "ObstacleHandler.h"
+#include "Codex.h"
 
 class Game
 {
+private:
+	enum class State
+	{
+		Menu,
+		Game
+	};
 public:
 	Game( class MainWindow& wnd );
 	Game( const Game& ) = delete;
@@ -45,6 +52,8 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
+	State gameState = State::Menu;
+	CFontPtr luckyPixel = FontCodex::Fetch( "Fonts/LuckyPixel6x9.bmp" );
 	Spaceship player;
 	Starfield sf;
 	ObstacleHandler objHand;
