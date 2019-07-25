@@ -36,6 +36,21 @@ void Spaceship::Update( const Mouse& mouse,float dt )
 		if( angle < desiredAngle ) angle += rotSpeed * dt;
 		if( angle > desiredAngle ) angle -= rotSpeed * dt;
 	}
+
+	chili::remove_erase_if( lasers,[]( Laser& laser )
+	{
+		return( laser.GetColl().IsHit() );
+	} );
+
+	// Shoot lasers.
+	shotTimer.Update( dt );
+	if( mouse.LeftIsPressed() && shotTimer.IsDone() )
+	{
+		shotTimer.Reset();
+		lasers.emplace_back( Laser{ pos,angle } );
+	}
+
+	for( auto& laser : lasers ) laser.Update( dt );
 }
 
 void Spaceship::Draw( Graphics& gfx ) const
@@ -47,6 +62,8 @@ void Spaceship::Draw( Graphics& gfx ) const
 
 	gfx.DrawSprite( Vei2( coll.GetPos() ),
 		spr,angle + chili::pi / 2.0f );
+
+	for( const auto& laser : lasers ) laser.Draw( gfx );
 }
 
 const Vec2& Spaceship::GetPos() const
@@ -57,4 +74,9 @@ const Vec2& Spaceship::GetPos() const
 Collider& Spaceship::GetColl()
 {
 	return( coll );
+}
+
+std::vector<Laser>& Spaceship::GetLasers()
+{
+	return( lasers );
 }

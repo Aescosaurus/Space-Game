@@ -13,6 +13,8 @@ public:
 
 	void Update( const Vec2& playerPos,float dt );
 	void Draw( Graphics& gfx ) const;
+
+	std::vector<Collider*>& GetColliders();
 private:
 	void LoadChunk();
 	void ReloadCollRefs();

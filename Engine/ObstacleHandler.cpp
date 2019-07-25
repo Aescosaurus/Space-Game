@@ -95,6 +95,11 @@ void ObstacleHandler::Draw( Graphics& gfx ) const
 	for( const auto& msl : missiles ) msl.Draw( gfx );
 }
 
+std::vector<Collider*>& ObstacleHandler::GetColliders()
+{
+	return( colliders );
+}
+
 void ObstacleHandler::LoadChunk()
 {
 	const std::string fileName = "Chunks/Chunk" +
