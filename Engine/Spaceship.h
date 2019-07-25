@@ -7,6 +7,7 @@
 #include "Collider.h"
 #include "Laser.h"
 #include "Timer.h"
+#include "FuelBar.h"
 
 class Spaceship
 {
@@ -30,4 +31,5 @@ private:
 	const Surface spr = "Images/Spaceship.bmp";
 	std::vector<Laser> lasers;
 	Timer shotTimer = 1.0f;
+	FuelBar fb;
 };

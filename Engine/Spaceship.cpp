@@ -48,9 +48,12 @@ void Spaceship::Update( const Mouse& mouse,float dt )
 	{
 		shotTimer.Reset();
 		lasers.emplace_back( Laser{ pos,angle } );
+		fb.GetFuel() -= 12.0f;
 	}
 
 	for( auto& laser : lasers ) laser.Update( dt );
+
+	fb.Update( dt );
 }
 
 void Spaceship::Draw( Graphics& gfx ) const
@@ -64,6 +67,8 @@ void Spaceship::Draw( Graphics& gfx ) const
 		spr,angle + chili::pi / 2.0f );
 
 	for( const auto& laser : lasers ) laser.Draw( gfx );
+
+	fb.Draw( gfx );
 }
 
 const Vec2& Spaceship::GetPos() const
