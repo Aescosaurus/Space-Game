@@ -4,6 +4,7 @@
 #include "Graphics.h"
 #include "Codex.h"
 #include "ChiliUtils.h"
+#include "Collider.h"
 
 class Asteroid
 {
@@ -17,9 +18,11 @@ public:
 
 	bool IsDead() const;
 	bool HasEnteredScreen() const;
+	Collider& GetColl();
 private:
 	static constexpr float size = 32.0f;
-	Vec2 pos;
+	// Vec2 pos;
+	Collider coll;
 	float speed;
 	static constexpr float fuelChance = 10.0f;
 	bool containsFuel;

@@ -3,6 +3,7 @@
 #include "Vec2.h"
 #include "Graphics.h"
 #include "Codex.h"
+#include "Collider.h"
 
 class Missile
 {
@@ -11,8 +12,11 @@ public:
 
 	void Update( const Vec2& playerPos,float dt );
 	void Draw( Graphics& gfx ) const;
+
+	Collider& GetColl();
 private:
-	Vec2 pos;
+	// Vec2 pos;
+	Collider coll;
 	// Vec2 vel;
 	float angle = 0.0f;
 	static constexpr float flightSpeed = 200.0f;

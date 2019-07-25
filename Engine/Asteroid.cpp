@@ -4,7 +4,8 @@
 
 Asteroid::Asteroid( const Vec2& pos,float speed )
 	:
-	pos( Vei2( pos ) ),
+	// pos( Vei2( pos ) ),
+	coll( pos,size ),
 	speed( speed ),
 	containsFuel( float( Random{ 0.0f,100.0f } ) < fuelChance ),
 	angleDelta( float( Random{ -rotSpeed,rotSpeed } ) )
@@ -17,7 +18,7 @@ Asteroid::Asteroid( const Vec2& pos,float speed )
 
 void Asteroid::Update( float dt )
 {
-	pos.x -= speed * dt;
+	coll.GetPos().x -= speed * dt;
 
 	angle += angleDelta * dt;
 }
@@ -26,20 +27,29 @@ void Asteroid::Draw( Graphics& gfx ) const
 {
 	// gfx.DrawCircle( Vei2( pos ),int( size ),Colors::Red );
 
-	gfx.DrawSprite( Vei2( pos ),sprClipArea,*sprSheet,angle );
+	// coll.Draw( gfx );
+
+	gfx.DrawSprite( Vei2( coll.GetPos() ),
+		sprClipArea,*sprSheet,angle );
 }
 
 Vec2& Asteroid::GetPos()
 {
-	return( pos );
+	return( coll.GetPos() );
 }
 
 bool Asteroid::IsDead() const
 {
-	return( pos.x < -size );
+	return( coll.GetPos().x < -size );
 }
 
 bool Asteroid::HasEnteredScreen() const
 {
-	return( pos.x < float( Graphics::ScreenWidth ) - size );
+	return( coll.GetPos().x <
+		float( Graphics::ScreenWidth ) - size );
+}
+
+Collider& Asteroid::GetColl()
+{
+	return( coll );
 }

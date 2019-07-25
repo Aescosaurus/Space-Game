@@ -15,6 +15,7 @@ public:
 	void Draw( Graphics& gfx ) const;
 private:
 	void LoadChunk();
+	void ReloadCollRefs();
 private:
 	static constexpr float asteroidSpawnChance = 2.0f;
 	static constexpr float asteroidMoveSpeed = 500.0f;
@@ -22,4 +23,5 @@ private:
 	std::vector<Asteroid> asteroids;
 	std::vector<Missile> missiles;
 	int nChunks;
+	std::vector<Collider*> colliders;
 };

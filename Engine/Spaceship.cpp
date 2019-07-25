@@ -1,8 +1,15 @@
 #include "Spaceship.h"
 #include "ChiliUtils.h"
 
+Spaceship::Spaceship()
+	:
+	coll( Vei2( Graphics::GetScreenRect().GetCenter() ),size )
+{}
+
 void Spaceship::Update( const Mouse& mouse,float dt )
 {
+	auto& pos = coll.GetPos();
+
 	auto delta = Vec2( mouse.GetPos() ) - pos;
 
 	delta = delta * speed;
@@ -38,10 +45,16 @@ void Spaceship::Draw( Graphics& gfx ) const
 	// gfx.DrawRect( int( pos.x ),int( pos.y ),
 	// 	size.x,size.y,Colors::Cyan );
 
-	gfx.DrawSprite( Vei2( pos ),spr,angle + chili::pi / 2.0f );
+	gfx.DrawSprite( Vei2( coll.GetPos() ),
+		spr,angle + chili::pi / 2.0f );
 }
 
 const Vec2& Spaceship::GetPos() const
 {
-	return( pos );
+	return( coll.GetPos() );
+}
+
+Collider& Spaceship::GetColl()
+{
+	return( coll );
 }

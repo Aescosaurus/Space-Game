@@ -23,6 +23,34 @@ ObstacleHandler::ObstacleHandler()
 
 void ObstacleHandler::Update( const Vec2& playerPos,float dt )
 {
+	// Collision detection.
+	for( int i = 0; i < int( colliders.size() ); ++i )
+	{
+		auto* const coll1 = colliders[i];
+		for( int j = 0; j < int( colliders.size() ); ++j )
+		{
+			auto* const coll2 = colliders[j];
+			if( coll1 != coll2 &&
+				coll1->IsCollidingWith( *coll2 ) )
+			{
+				coll1->IsHit() = true;
+				coll2->IsHit() = true;
+				// Explosion animation here.
+			}
+		}
+	}
+
+	// Remove objects that have collided.
+	chili::remove_erase_if( asteroids,[]( Asteroid& ast )
+	{
+		return( ast.GetColl().IsHit() );
+	} );
+	chili::remove_erase_if( missiles,[]( Missile& mis )
+	{
+		return( mis.GetColl().IsHit() );
+	} );
+
+	// Asteroids and chunk loading.
 	bool loadNextChunk = true;
 	for( int i = 0; i < int( asteroids.size() ); ++i )
 	{
@@ -49,23 +77,16 @@ void ObstacleHandler::Update( const Vec2& playerPos,float dt )
 		missile.Update( playerPos,dt );
 	}
 
-	// if( float( Random{ 0.0f,100.0f } ) < asteroidSpawnChance )
-	// {
-	// 	const float padding = 64.0f;
-	// 	const auto randPos = Vec2{ float(
-	// 		Graphics::ScreenWidth ) + padding,
-	// 		float( Random{ padding,float(
-	// 		Graphics::ScreenHeight ) - padding } ) };
-	// 	asteroids.emplace_back( Asteroid{ randPos,
-	// 		asteroidMoveSpeed } );
-	// }
-
+	// Spawn missiles.
 	if( float( Random{ 0.0f,100.0f } ) < missileSpawnChance )
 	{
 		missiles.emplace_back( Missile{ Vec2{ -64.0f,
 			float( Random{ 0.0f,
 			float( Graphics::ScreenHeight ) } ) } } );
 	}
+
+	// Reload collider references if necessary.
+	ReloadCollRefs();
 }
 
 void ObstacleHandler::Draw( Graphics& gfx ) const
@@ -114,5 +135,21 @@ void ObstacleHandler::LoadChunk()
 		// pos *= scale;
 		pos = Vei2( Vec2( pos ) * scale );
 		pos.x += Graphics::ScreenWidth;
+	}
+}
+
+void ObstacleHandler::ReloadCollRefs()
+{
+	colliders.clear();
+	colliders.reserve( asteroids.size() + missiles.size() );
+
+	for( auto& ast : asteroids )
+	{
+		colliders.emplace_back( &ast.GetColl() );
+	}
+
+	for( auto& mis : missiles )
+	{
+		colliders.emplace_back( &mis.GetColl() );
 	}
 }
